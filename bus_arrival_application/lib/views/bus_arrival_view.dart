@@ -1,6 +1,6 @@
+import 'package:bus_arrival_application/db/bus_db.dart';
 import 'package:flutter/material.dart';
 import '../constants/bus_stops.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:bus_arrival_application/widgets/bus_stop_component.dart';
 
 class BusArrivalView extends StatefulWidget {
@@ -13,6 +13,21 @@ class BusArrivalView extends StatefulWidget {
 class _BusArrivalViewState extends State<BusArrivalView> {
   List<String> _favourites = [];
 
+  @override
+  void initState() {
+    super.initState();
+    _loadFavourites();
+  }
+
+  Future<void> _loadFavourites() async {
+    final favs = await BusDb.getFavourites();
+    if (mounted) {
+      setState(() {
+        _favourites = favs;
+      });
+    }
+  }
+
   void _favButtonPressed(String id) {
     setState(() {
       if (_favourites.contains(id)) {
@@ -21,7 +36,7 @@ class _BusArrivalViewState extends State<BusArrivalView> {
         _favourites.add(id);
       }
     });
-    
+    BusDb.saveFavourite(id);
   }
 
   @override
