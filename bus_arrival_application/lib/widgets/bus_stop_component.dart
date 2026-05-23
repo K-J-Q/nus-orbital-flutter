@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
 
-class BusStopComponent extends StatelessWidget {
+class BusStopComponent extends StatefulWidget {
   const BusStopComponent({
     super.key,
-    required this.isFav,
-    required this.isExpanded,
   });
 
-  final bool isFav;
-  final bool isExpanded;
+  @override
+  State<BusStopComponent> createState() => _BusStopComponentState();
+}
+
+class _BusStopComponentState extends State<BusStopComponent> {
+  bool _isFav = false;
+  bool _isExpanded = false;
+  
+  void _favButtonPressed() {
+    setState(() {
+      _isFav = !_isFav;
+    });
+  }
+
+  void _expandButtonPressed() {
+    setState(() {
+      _isExpanded = !_isExpanded;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,25 +34,25 @@ class BusStopComponent extends StatelessWidget {
           children: [
             IconButton(
               icon: Icon(
-                isFav ? Icons.star : Icons.star_outline,
+                _isFav ? Icons.star : Icons.star_outline,
                 size: 36,
                 color: Colors.blueAccent,
               ),
-              onPressed: () {},
+              onPressed: _favButtonPressed,
             ),
             Text("Bus Stop Name"),
             IconButton(
               icon: Icon(
-                isExpanded
+                _isExpanded
                     ? Icons.keyboard_arrow_up
                     : Icons.keyboard_arrow_down,
                 size: 36,
               ),
-              onPressed: () {},
+              onPressed: _expandButtonPressed,
             ),
           ],
         ),
-        isExpanded ? Text("bus arrival timings") : SizedBox(),
+        _isExpanded ? Text("bus arrival timings") : SizedBox(),
       ],
     );
   }

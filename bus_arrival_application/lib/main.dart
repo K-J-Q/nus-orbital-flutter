@@ -28,21 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool isFav = false;
-  bool isExpanded = false;
-
-  void favButtonPressed() {
-    setState(() {
-      isFav = !isFav;
-    });
-  }
-
-  void expandButtonPressed() {
-    setState(() {
-      isExpanded = !isExpanded;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          BusStopComponent(isFav: isFav, isExpanded: isExpanded),
+          BusStopComponent(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
