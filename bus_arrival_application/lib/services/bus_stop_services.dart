@@ -8,7 +8,13 @@ class BusStopServices {
   static const String _busStopDetailsUrl =
       'https://n784k2f6s0.execute-api.ap-southeast-1.amazonaws.com/prod/bus-stop-details';
 
+  /// `Future<T>` represents a value of type T that will be available at some point in the future.
+  /// `async` keyword enables the use of `await` inside this function and automatically wraps
+  /// the return value in a Future. The function returns immediately, not blocking the UI.
   Future<Map<String, List<BusStop>>> fetchBusStops() async {
+    /// `await` pauses execution here until the HTTP request completes and a response is received.
+    /// During this wait, other code (like UI rendering) can continue running on the main thread (since this is an async function).
+    /// The result is unwrapped from the Future automatically upon completion.
     final response = await http.get(Uri.parse(_busStopDetailsUrl));
 
     // Basic error handling for non-200 (error) responses.
