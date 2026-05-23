@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class BusStopComponent extends StatefulWidget {
-  const BusStopComponent({
-    super.key,
-  });
+  const BusStopComponent({super.key, required this.busStop});
+
+  final Map<String, dynamic> busStop;
 
   @override
   State<BusStopComponent> createState() => _BusStopComponentState();
@@ -12,7 +12,7 @@ class BusStopComponent extends StatefulWidget {
 class _BusStopComponentState extends State<BusStopComponent> {
   bool _isFav = false;
   bool _isExpanded = false;
-  
+
   void _favButtonPressed() {
     setState(() {
       _isFav = !_isFav;
@@ -27,6 +27,9 @@ class _BusStopComponentState extends State<BusStopComponent> {
 
   @override
   Widget build(BuildContext context) {
+    final busStopName = widget.busStop['name'] as String;
+    final busses = widget.busStop['busses'] as List;
+
     return Column(
       children: [
         Row(
@@ -40,7 +43,7 @@ class _BusStopComponentState extends State<BusStopComponent> {
               ),
               onPressed: _favButtonPressed,
             ),
-            Text("Bus Stop Name"),
+            Text(busStopName),
             IconButton(
               icon: Icon(
                 _isExpanded
@@ -52,7 +55,38 @@ class _BusStopComponentState extends State<BusStopComponent> {
             ),
           ],
         ),
-        _isExpanded ? Text("bus arrival timings") : SizedBox(),
+        if (_isExpanded)
+          ...busses.map((bus) {
+            return BusArrivalDetails(bus: bus);
+          }),
+      ],
+    );
+  }
+}
+
+class BusArrivalDetails extends StatelessWidget {
+  const BusArrivalDetails({super.key, required this.bus});
+
+  final Map<String, dynamic> bus;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            bus['name'],
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        ...bus['arriving'].map(
+          (time) => Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('$time mins'),
+          ),
+        ),
       ],
     );
   }

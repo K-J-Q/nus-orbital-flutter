@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/bus_stops.dart';
 import 'package:bus_arrival_application/widgets/bus_stop_component.dart';
 
 class BusArrivalView extends StatelessWidget {
@@ -6,6 +7,17 @@ class BusArrivalView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [BusStopComponent()]);
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemBuilder: (context, index) {
+              final busStop = busStopTimings[index];
+              return BusStopComponent(busStop: busStop);
+            },
+          ),
+        ),
+      ],
+    );
   }
 }
