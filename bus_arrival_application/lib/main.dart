@@ -1,5 +1,6 @@
-import 'package:bus_arrival_application/widgets/bus_stop_component.dart';
 import 'package:flutter/material.dart';
+import 'package:bus_arrival_application/views/bus_arrival_view.dart';
+import 'package:bus_arrival_application/views/bus_services_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +29,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _viewOptions = [
+    BusArrivalView(),
+    BusServicesView(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,11 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          BusStopComponent(),
-        ],
-      ),
+      body: _viewOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -52,8 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Bus Services',
           ),
         ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
 }
-
