@@ -21,6 +21,7 @@ class _BusArrivalViewState extends State<BusArrivalView> {
         _favourites.add(id);
       }
     });
+    
   }
 
   @override
