@@ -1,3 +1,4 @@
+import 'package:bus_arrival_application/widgets/bus_stop_component.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -52,34 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: Icon(
-                      isFav ? Icons.star : Icons.star_outline,
-                      size: 36,
-                      color: Colors.blueAccent,
-                    ),
-                    onPressed: favButtonPressed,
-                  ),
-                  Text("Bus Stop Name"),
-                  IconButton(
-                    icon: Icon(
-                      isExpanded
-                          ? Icons.keyboard_arrow_up
-                          : Icons.keyboard_arrow_down,
-                      size: 36,
-                    ),
-                    onPressed: expandButtonPressed,
-                  ),
-                ],
-              ),
-              isExpanded ? Text("bus arrival timings") : SizedBox(),
-            ],
-          ),
+          BusStopComponent(isFav: isFav, isExpanded: isExpanded),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -97,3 +71,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
