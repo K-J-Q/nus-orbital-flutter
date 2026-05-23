@@ -11,6 +11,7 @@ class BusArrivalView extends StatelessWidget {
       children: [
         Expanded(
           child: ListView.builder(
+            itemCount: busStopTimings.length,
             itemBuilder: (context, index) {
               final busStop = busStopTimings[index];
               return BusStopComponent(busStop: busStop);
