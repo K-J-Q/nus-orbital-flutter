@@ -8,5 +8,8 @@ Refer to the guides:
 - [Part 1 Guide](./part-one-guide.md)
 <!-- - [Part 2 Guide](./part-two-guide.md) -->
 
+and slides:
+- [Intro to Flutter - workshop 1](./Intro%20to%20Flutter%20-%20workshop%201.pdf)
+
 ## Hands-on materials
 Refer to [bus_arrival_application](./bus_arrival_application) for the codebase used in the workshop.
