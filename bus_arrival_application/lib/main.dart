@@ -6,6 +6,7 @@ void main() {
   runApp(const MyApp());
 }
 
+/// Root widget that wires theme and initial home screen. Most apps will have a similar structure, with the home screen containing the main navigation.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -31,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
+  // Available views for the bottom navigation tabs.
   static const List<Widget> _viewOptions = [
     BusArrivalView(),
     BusServicesView(),

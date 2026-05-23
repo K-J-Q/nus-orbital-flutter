@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../constants/bus_stops.dart';
 import 'package:bus_arrival_application/widgets/bus_stop_component.dart';
 
+/// View showing bus arrival times, with favourites pinned to the top.
 class BusArrivalView extends StatefulWidget {
   const BusArrivalView({super.key});
 
@@ -19,6 +20,7 @@ class _BusArrivalViewState extends State<BusArrivalView> {
     _loadFavourites();
   }
 
+  // Load favourites from local storage on startup.
   Future<void> _loadFavourites() async {
     final favs = await BusDb.getFavourites();
     if (mounted) {
@@ -41,6 +43,7 @@ class _BusArrivalViewState extends State<BusArrivalView> {
 
   @override
   Widget build(BuildContext context) {
+    // Sort by favourite, then by name for a stable list.
     final sortedStops = List<Map<String, dynamic>>.from(busStopTimings);
     sortedStops.sort((a, b) {
       final aFav = _favourites.contains(a['id'].toString());

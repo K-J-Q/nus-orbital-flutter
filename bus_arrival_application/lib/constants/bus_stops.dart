@@ -1,3 +1,4 @@
+// Static sample data for bus arrival timings per stop.
 const List<Map<String, dynamic>> busStopTimings = [
   {
     'id': 1,

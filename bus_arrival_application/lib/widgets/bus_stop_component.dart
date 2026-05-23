@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Expandable card showing a stop and its next arrivals.
 class BusStopComponent extends StatefulWidget {
   const BusStopComponent({
     super.key,
@@ -18,6 +19,7 @@ class BusStopComponent extends StatefulWidget {
 
 class _BusStopComponentState extends State<BusStopComponent> {
   bool _isExpanded = false;
+  // Toggle the arrival list for this stop.
   void _expandButtonPressed() {
     setState(() {
       _isExpanded = !_isExpanded;
@@ -70,6 +72,7 @@ class BusArrivalDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Shows service name and upcoming arrival minutes.
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

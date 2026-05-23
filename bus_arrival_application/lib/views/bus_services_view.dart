@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/bus_stop.dart';
 import '../services/bus_stop_services.dart';
 
+/// View that lists bus routes and their respective stops.
 class BusServicesView extends StatefulWidget {
   const BusServicesView({super.key});
 
@@ -21,6 +22,7 @@ class _BusRoutesViewState extends State<BusServicesView> {
     _fetchData();
   }
 
+  // Fetch bus stop details for all routes.
   Future<void> _fetchData() async {
     try {
       final data = await _busStopServices.fetchBusStops();
@@ -51,12 +53,14 @@ class _BusRoutesViewState extends State<BusServicesView> {
   }
 }
 
+// Renders a list of routes with a readable name and color.
 class _ListOfBusToBusStops extends StatelessWidget {
   const _ListOfBusToBusStops({required this.busStopDetails});
 
   final Map<String, List<BusStop>> busStopDetails;
 
   String _getProperName(String rawName) {
+    // Map API route keys to friendly names.
     switch (rawName) {
       case 'blueBus':
         return 'Blue Bus';
@@ -74,6 +78,7 @@ class _ListOfBusToBusStops extends StatelessWidget {
   }
 
   Color _getBusColor(String rawName) {
+    // Keep route colors consistent with the UI legend.
     switch (rawName) {
       case 'blueBus':
         return Colors.blue;

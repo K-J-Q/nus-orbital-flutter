@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// Expandable list of stops for a single bus route.
 class BusStopField extends StatefulWidget {
+  // This widget accepts a bus name, a list of stop names, and an optional color for the bus icon. It renders a collapsible section showing the stops for that route.
   const BusStopField({
     super.key,
     required this.busName,
@@ -20,6 +22,7 @@ class _BusStopFieldState extends State<BusStopField> {
   bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
+    // Collapsible section for a route's stop list.
     return Column(
       children: [
         Row(
